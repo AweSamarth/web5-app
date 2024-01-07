@@ -29,20 +29,29 @@ export default function Home() {
     return acc;
   }, {});
 
-  useEffect(() => {
-    const initWeb5 = async () => {
-      const { web5, did } = await Web5.connect();
-      setWeb5(web5);
-      console.log(did)
-      setMyDid(did);
+//   useEffect(() => {
 
-      if (web5 && did) {
-        await configureProtocol(web5, did);
-        await fetchDings(web5, did);
-      }
-    };
-    initWeb5();
-  }, []);
+//     const initWeb5 = async () => {
+//       // @ts-ignore
+//       const { Web5 } = await import('@web5/api');
+
+//       try {
+//         const { web5, did } = await Web5.connect({sync: '5s'});
+//         setWeb5(web5);
+//         setMyDid(did);
+//         console.log(web5);
+//         if (web5 && did) {
+//           console.log('Web5 initialized');
+//           // await configureProtocol(web5, did);
+//         }
+//       } catch (error) {
+//         console.error('Error initializing Web5:', error);
+//       }
+//     };
+
+//     initWeb5();
+
+// }, []);
 
   useEffect(() => {
     if (!web5 || !myDid) return;
@@ -70,6 +79,7 @@ export default function Home() {
             { who: "anyone", can: "write" },
             { who: "author", of: "ding", can: "read" },
             { who: "recipient", of: "ding", can: "read" },
+            
           ],
         },
       },

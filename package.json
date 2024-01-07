@@ -12,11 +12,19 @@
   },
   "dependencies": {
     "@web5/api": "0.8.3",
+    "@web5/credentials": "^0.4.1",
+    "@web5/crypto": "^0.2.4",
+    "@web5/dids": "^0.2.4",
+    "@web5/user-agent": "^0.2.5",
+    "autoprefixer": "^10.4.16",
     "crypto-browserify": "3.12.0",
+    "daisyui": "^4.5.0",
     "next": "13.5.4",
+    "postcss": "^8.4.33",
     "process": "0.11.10",
-    "react": "18",
-    "react-dom": "18",
-    "stream-browserify": "3.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "stream-browserify": "3.0.0",
+    "tailwindcss": "^3.4.1"
   }
 }

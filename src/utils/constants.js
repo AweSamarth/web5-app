@@ -1,62 +1,46 @@
-export const protocolDefinition = {
-    "protocol": "https://social-media.xyz",
+export const protocolDefinition =
+
+{
+    "protocol": "https://h.xyz",
     "published": true,
     "types": {
-      "patientProfile": {
-        "schema": "https://social-media.xyz/schemas/postSchema",
+      "profile": {
+        "schema": "https://social-media.xyz/schemas/profileSchema",
         "dataFormats": ["text/plain"]
       },
-      "reply": {
-        "schema": "https://social-media.xyz/schemas/replySchema",
+
+      "name": {
+        "schema": "https://social-media.xyz/schemas/nameSchema",
         "dataFormats": ["text/plain"]
       },
-      "image": {
+      "role": {
+        "schema": "https://social-media.xyz/schemas/roleSchema",
+        "dataFormats": ["text/plain"]
+      },
+
+      "pfp": {
+        "schema": "https://social-media.xyz/schemas/pfpSchema",
         "dataFormats": ["image/jpeg"]
       },
-      "caption": {
-        "schema": "https://social-media.xyz/schemas/captionSchema",
+      "prescription": {
+        "schema": "https://social-media.xyz/schemas/prescriptionSchema",
         "dataFormats": ["text/plain"]
       }
     },
     "structure": {
-      "post": {
+      "profile": {
         "$actions": [
           {
             "who": "anyone",
             "can": "read"
           },
           {
-            "who": "anyone",
+            "who": "author",
+            "of": "profile",
             "can": "write"
           }
         ],
-        "reply": {
-          "$actions": [
-            {
-              "who": "recipient",
-              "of": "post",
-              "can": "write"
-            },
-            {
-              "who": "author",
-              "of": "post",
-              "can": "write"
-            }
-          ]
-        }
-      },
-      "image": {
-        "$actions": [
-          {
-            "who": "anyone",
-            "can": "read"
-          },
-          {
-            "who": "anyone",
-            "can": "write"
-          }
-        ],
-        "caption": {
+        "pfp": {
           "$actions": [
             {
               "who": "anyone",
@@ -64,25 +48,56 @@ export const protocolDefinition = {
             },
             {
               "who": "author",
-              "of": "image",
+              "of": "profile",
               "can": "write"
             }
           ]
         },
-        "reply": {
-          "$actions": [
+
+        "name" :{          
+            
+            "$actions": [
             {
               "who": "author",
-              "of": "image",
+              "of": "profile",
               "can": "read"
             },
             {
-              "who": "recipient",
-              "of": "image",
+                "who": "recipient",
+                "of": "profile",
+                "can": "read"
+              },
+            {
+              "who": "author",
+              "of": "profile",
               "can": "write"
             }
-          ]
-        }
+          ]}
+
+    
+    },
+      "prescription": {
+        "$actions": [
+          {
+            "who": "recipient",
+            "of": "prescription",
+            "can": "read"
+          },
+          {
+            "who": "author",
+            "of": "prescription",
+            "can": "write"
+          },
+          {
+            "who": "author",
+            "of": "prescription",
+            "can": "update"
+          }
+
+        ]
+
+        
+
       }
     }
 }

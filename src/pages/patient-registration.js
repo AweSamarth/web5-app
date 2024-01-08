@@ -9,9 +9,10 @@ export default function NewCredential() {
   const [web5, setWeb5] = useState(null);
   const [myDid, setMyDid] = useState(null);
   const [verified, setVerified] = useState(false);
-
-
-
+  const [ firstName , setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [ age, setAge] = useState()
+  const [profilePicture, setProfilePicture] = useState()
 
   useEffect(() => {
     const initWeb5 = async () => {
@@ -48,78 +49,38 @@ export default function NewCredential() {
     initWeb5();
   }, []);
 
-  const definitionChecker = async () => {
-    const signedVcJwt = localStorage.getItem("vc");
+  const creator = async () => {
 
-    try {
-      PresentationExchange.satisfiesPresentationDefinition({
-        vcJwts: [signedVcJwt],
-        presentationDefinition: presentationDefinition,
+
+    const { record: postRecord, status: createStatus } = await web5.dwn.records.create({
+        data: myDid,
+        message: {
+          schema: 'https://social-media.xyz/schemas/profileSchema',
+          dataFormat: 'text/plain',
+          protocol: protocolDefinition.protocol,
+          protocolPath: 'profile'
+        }
       });
-      console.log("\nVC Satisfies Presentation Definition!\n");
-    } catch (err) {
-      console.log(
-        "VC does not satisfy Presentation Definition: " + err.message
-      );
-    }
 
-    // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
-    const presentationResult =
-      PresentationExchange.createPresentationFromCredentials({
-        vcJwts: [signedVcJwt],
-        presentationDefinition: presentationDefinition,
-      });
-    console.log("\nPresentation Result: " + JSON.stringify(presentationResult));
+      console.log(postRecord)
+      console.log(createStatus)
+      const { records: replies } = await web5.dwn.records.query({
+        message: {
+            filter: {
+             
+             recordId: postRecord.id
+            }
+        }
+    })
 
-    try {
-      await VerifiableCredential.verify({ vcJwt: signedVcJwt });
-      console.log("\nVC Verification successful!\n");
-    } catch (err) {
-      console.log("\nVC Verification failed: " + err.message + "\n");
-    }
-
-    const parsedVC = VerifiableCredential.parseJwt({ vcJwt: signedVcJwt });
-    console.log(parsedVC);
-
-    if (parsedVC.vcDataModel.credentialSubject.DegreeName === "MBBS") {
-
-
-
-    }
-
-
-
-
+    console.log(await replies[0].data.text())
   };
 
-  const presentationDefinition = {
-    id: "presDefId123",
-    name: "Medical Degree Presentation Verification",
-    purpose: "for proving completion of a medical degree",
-    input_descriptors: [
-      {
-        id: "legitness",
-        purpose: "are you legit or not?",
-        constraints: {
-          fields: [
-            {
-              path: ["$.credentialSubject.DegreeName"],
-            },
-          ],
-        },
-      },
-    ],
-  };
 
-  const definitionValidation = PresentationExchange.validateDefinition({
-    presentationDefinition,
-  });
-
-  console.log(definitionValidation);
 
   return (
     <div className="flex flex-col items-center px-4 py-3 gap-4">
-      <div className=" text-4xl">Register as a Doctor here</div>
+      <div className=" text-4xl">Register as a Patient here</div>
 
       <label className="form-control w-full max-w-xs">
         <div className="label">
@@ -129,6 +90,8 @@ export default function NewCredential() {
           type="text"
           placeholder="Type here"
           className="input input-bordered w-full max-w-xs"
+          value = {firstName}
+          onChange={(event)=>setFirstName(event.target.value)}
         />
         <div className="label"></div>
         <div className="label">
@@ -138,6 +101,8 @@ export default function NewCredential() {
           type="text"
           placeholder="Type here"
           className="input input-bordered w-full max-w-xs"
+          value = {lastName}
+          onChange = {(event)=>setLastName(event.target.value)}
         />
         <div className="label"></div>
         <div className="label">
@@ -147,29 +112,21 @@ export default function NewCredential() {
           type="number"
           placeholder="Type here"
           className="input input-bordered w-full max-w-xs text-white  "
+          onChange={(event)=>setAge(event.target.value)}
         />
         <div className="label"></div>
         <div className="label">
           <span className="label-text">Profile Picture</span>
         </div>
-        <input type="file" className="file-input file-input-bordered w-full max-w-xs" />
+        <input type="file" className="file-input file-input-bordered w-full max-w-xs" onChange={(event)=>setFile(event.target.files[0])} />
 
         <div className="label"></div>
 
-        <div className="label">
-          <span className="label-text">Proof of Degree (JWT)</span>
-        </div>
-        <input
-          type="text"
-          placeholder="Type here"
-          className="input input-bordered w-full max-w-xs"
-        />
-        <div className="label"></div>
       </label>
 
       <button
         className="px-4 py-2 bg-blue-500 rounded"
-        onClick={definitionChecker}
+        onClick={creator}
       >
         Register
       </button>

@@ -80,15 +80,15 @@ export default function NewCredential() {
           
       });
 
-      console.log(protocol)
-      console.log(status)
+      // console.log(protocol)
+      // console.log(status)
       // await protocol.send(did);
 
 
 
         setWeb5(web5);
         setMyDid(did);
-        console.log(web5);
+        // console.log(web5);
         if (web5 && did) {
           console.log("Web5 initialized");
           // await configureProtocol(web5, did);
@@ -255,8 +255,10 @@ export default function NewCredential() {
     <div className="flex flex-col items-center px-4 py-3 gap-4">
       <div className=" text-4xl mb-7">Register as a Doctor here</div>
       {registered?(
-        <div className="text-5xl text-center">You have successfully registered as a doctor!</div>
-
+        <div className="text-5xl text-center flex flex-col gap-12">
+        <div>You have successfully registered as a doctor!</div>
+        <a href="doctor-profile"><button className="bg-blue-500 px-5 py-4 text-lg">Go to Profile</button></a>           
+        </div>
       ):(<div className=" flex flex-col">
         <label className="form-control w-full max-w-xs">
           <div className="label">

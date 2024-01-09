@@ -1,10 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -47,6 +48,7 @@ input {
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   padding: 8px;
+  color: white;
 }
 
 header h1 {
@@ -56,7 +58,7 @@ header h1 {
 header {
   background-color: #a564d3;
   color: #ffffff;
-  font-family: 'Lobster';
+  font-family: "Lobster";
   padding-left: 25px;
 }
 
@@ -66,7 +68,8 @@ main {
   overflow: hidden;
 }
 
-label, input {
+label,
+input {
   margin-bottom: 4px;
 }
 
@@ -82,7 +85,7 @@ section {
 
 .conversation h3 {
   background: #ffff;
-  border-bottom: 1px solid #F3F4F6;
+  border-bottom: 1px solid #f3f4f6;
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 8px;
@@ -109,7 +112,7 @@ section {
   background-color: #f5e7ff;
   display: flex;
   flex-direction: column;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-weight: 500;
   min-height: 100vh;
 }
@@ -122,7 +125,8 @@ section {
   padding: 8px;
 }
 
-.sidebar-item:hover, .active {
+.sidebar-item:hover,
+.active {
   background: #a564d3;
   color: #ffffff;
 }
@@ -135,7 +139,7 @@ section {
 }
 
 .my-chat-bubble {
-  background: #F3F4F6;
+  background: #f3f4f6;
 }
 
 .recipient-chat-bubble {
@@ -153,7 +157,7 @@ section {
 }
 
 .button-group {
-  border-top: 1px solid #F3F4F6;
+  border-top: 1px solid #f3f4f6;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -164,7 +168,7 @@ section {
 
 .input-error-container {
   background-color: #ffffff;
-  border-top: 1px solid #F3F4F6;
+  border-top: 1px solid #f3f4f6;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -240,18 +244,18 @@ li.bg-gray-100 {
 }
 
 .start-new-chat {
-  background-color: #4A90E2;
+  background-color: #4a90e2;
   color: white;
 }
 
 .copy-did {
-  background-color: #EAEAEA;
+  background-color: #eaeaea;
   color: black;
   margin-top: 10px;
 }
 
 .copy-did:hover {
-  background-color: #D8D8D8;
+  background-color: #d8d8d8;
 }
 
 .truncate {
@@ -278,7 +282,7 @@ li.bg-gray-100 {
   color: #ffffff;
   cursor: pointer;
   display: flex;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-weight: 500;
   gap: 8px;
   padding: 8px 16px;
@@ -291,57 +295,62 @@ li.bg-gray-100 {
 }
 
 @media screen and (max-width: 768px) {
-    aside {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 10px;
-        padding: 10px;
-    }
+  aside {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 10px;
+  }
 
-    header h1 {
-        font-size: 2rem;
-    }
+  header h1 {
+    font-size: 2rem;
+  }
 
-    .app-container {
-        flex-direction: column-reverse;
-    }
+  .app-container {
+    flex-direction: column-reverse;
+  }
 
-    main {
-        flex-direction: column;
-    }
+  main {
+    flex-direction: column;
+  }
 
-    section, .conversation {
-        max-height: none;
-    }
+  section,
+  .conversation {
+    max-height: none;
+  }
 
-    .input-group button {
-        flex-basis: 80px;
-    }
+  .input-group button {
+    flex-basis: 80px;
+  }
 
-    .truncate {
-        max-width: 280px;
-    }
+  .truncate {
+    max-width: 280px;
+  }
+}
+
+button {
+  color: white;
 }
 
 @media screen and (min-width: 2560px) {
-    .app-container {
-        max-width: 80%;
-        margin: 0 auto;
-    }
+  .app-container {
+    max-width: 80%;
+    margin: 0 auto;
+  }
 
-    aside {
-        width: 300px;
-    }
+  aside {
+    width: 300px;
+  }
 
-    header h1 {
-        font-size: 3rem;
-    }
+  header h1 {
+    font-size: 3rem;
+  }
 
-    .input-group button {
-        flex-basis: 120px;
-    }
+  .input-group button {
+    flex-basis: 120px;
+  }
 
-    .truncate {
-        max-width: 480px;
-    }
+  .truncate {
+    max-width: 480px;
+  }
 }

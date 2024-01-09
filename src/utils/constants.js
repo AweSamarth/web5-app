@@ -27,6 +27,7 @@ export const protocolDefinition =
         "dataFormats": ["text/plain"]
       }
     },
+
     "structure": {
       "profile": {
         "$actions": [
@@ -72,7 +73,42 @@ export const protocolDefinition =
               "of": "profile",
               "can": "write"
             }
-          ]}
+          ]},
+
+          "role" :{          
+            
+            "$actions": [
+            {
+              "who": "anyone",
+              "can": "read"
+            },
+          ]},
+
+
+
+          "prescription": {
+            "$actions": [
+              {
+                "who": "recipient",
+                "of": "prescription",
+                "can": "read"
+              },
+              {
+                "who": "author",
+                "of": "prescription",
+                "can": "write"
+              },
+              {
+                "who": "author",
+                "of": "prescription",
+                "can": "update"
+              }
+    
+            ]
+    
+            
+    
+          }
 
     
     },

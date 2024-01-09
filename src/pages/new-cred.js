@@ -5,6 +5,19 @@ import { DidKeyMethod, DidDhtMethod, DidIonMethod } from "@web5/dids";
 
 export default function NewCredential() {
   const [issuerDid, setIssuerDid] = useState(null);
+  const [web5, setWeb5] = useState(null);
+  const [myDid, setMyDid] = useState(null);
+  const [activeRecipient, setActiveRecipient] = useState(null);
+
+  const [noteValue, setNoteValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [recipientDid, setRecipientDid] = useState("");
+
+  const [didCopied, setDidCopied] = useState(false);
+  const [showNewChatInput, setShowNewChatInput] = useState(false);
+
+  const [allDings, setAllDings] = useState([]);
+
 
 useEffect(() => {
 
